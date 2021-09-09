@@ -8,10 +8,14 @@
 
 ## 動作環境を作成するために要した作業
 
+コンテナの作成
+
 ```sh
 cd ~/projects/IMPROVED_DIFFUSION
 docker run -it --name kusuda_IMDDPM -v $(pwd):/workspace/IMDDPM --gpus all python:3.8 /bin/bash
 ```
+
+コンテナ内部での作業，足りていないモジュールを補充する．
 
 ```sh
 pip install -e .
@@ -25,12 +29,12 @@ pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f h
 
 ### train
 
-- data_dir=""
-- schedule_sampler="uniform"
-- lr=1e-4
+- data_dir="" #画像データの所在地
+- schedule_sampler="uniform" 
+- lr=1e-4 #学習率
 - weight_decay=0.0
-- lr_anneal_steps=0
-- batch_size=1
+- lr_anneal_steps=0 #学習を行うステップ数
+- batch_size=1 #バッチの画像数
 - microbatch=-1  # -1 disables microbatches
 - ema_rate="0.9999"  # comma-separated list of EMA values
 - log_interval=10
@@ -38,7 +42,7 @@ pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f h
 - resume_checkpoint=""
 - use_fp16=False
 - fp16_scale_growth=1e-3
-- env_path=None
+- env_path=None #自分で追加した環境変数，
 
 ### sample
 
