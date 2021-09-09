@@ -5,6 +5,7 @@ numpy array. This can be used to produce samples for FID evaluation.
 
 import argparse
 import os
+import pprint
 
 import numpy as np
 import torch as th
@@ -22,6 +23,7 @@ from improved_diffusion.script_util import (
 
 def main():
     args = create_argparser().parse_args()
+    
 
     dist_util.setup_dist()
     logger.configure()
