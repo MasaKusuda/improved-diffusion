@@ -439,7 +439,7 @@ def mpi_weighted_mean(comm, local_name2valcount):
         return {}
 
 
-def configure(dir=None, format_strs=None, comm=None, log_suffix=""):
+def configure(dir=None, format_strs=None, comm=None,env_path=None , log_suffix=""):
     """
     If comm is provided, average all numerical stats across that comm
     """
@@ -469,7 +469,9 @@ def configure(dir=None, format_strs=None, comm=None, log_suffix=""):
     Logger.CURRENT = Logger(dir=dir, output_formats=output_formats, comm=comm)
     if output_formats:
         log("Logging to %s" % dir)
-
+        if env_path is not None:
+            with open(env_path) as f:
+                print("log_dir:{}".format(dir))
 
 def _configure_default_logger():
     configure()

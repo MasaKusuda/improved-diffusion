@@ -15,3 +15,52 @@ apt intall -y libopenmpi-dev
 pip intall mpi4py
 pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 ```
+
+## 与えられる引数の一覧
+
+### train
+
+- data_dir=""
+- schedule_sampler="uniform"
+- lr=1e-4
+- weight_decay=0.0
+- lr_anneal_steps=0
+- batch_size=1
+- microbatch=-1  # -1 disables microbatches
+- ema_rate="0.9999"  # comma-separated list of EMA values
+- log_interval=10
+- save_interval=10000
+- resume_checkpoint=""
+- use_fp16=False
+- fp16_scale_growth=1e-3
+- env_path=None
+
+### sample
+
+- clip_denoised=True
+- num_samples=10000
+- batch_size=16
+- use_ddim=False
+- model_path=""
+
+### train,sample共通
+
+- image_size=64
+- num_channels=128
+- num_res_blocks=2
+- num_heads=4
+- num_heads_upsample=-1
+- attention_resolutions="16,8"
+- dropout=0.0
+- learn_sigma=False
+- sigma_small=False
+- class_cond=False
+- diffusion_steps=1000
+- noise_schedule="linear"
+- timestep_respacing=""
+- use_kl=False
+- predict_xstart=False
+- rescale_timesteps=True
+- rescale_learned_sigmas=True
+- use_checkpoint=False
+- use_scale_shift_norm=True
