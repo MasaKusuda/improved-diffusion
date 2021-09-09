@@ -15,6 +15,8 @@ import warnings
 from collections import defaultdict
 from contextlib import contextmanager
 
+import pprint
+
 DEBUG = 10
 INFO = 20
 WARN = 30
@@ -439,7 +441,7 @@ def mpi_weighted_mean(comm, local_name2valcount):
         return {}
 
 
-def configure(dir=None, format_strs=None, comm=None,env_path=None , log_suffix=""):
+def configure(dir=None, format_strs=None, comm=None,env_path=None , args=None,log_suffix=""):
     """
     If comm is provided, average all numerical stats across that comm
     """
@@ -470,8 +472,18 @@ def configure(dir=None, format_strs=None, comm=None,env_path=None , log_suffix="
     if output_formats:
         log("Logging to %s" % dir)
         if env_path is not None:
-            with open(env_path) as f:
-                print("log_dir:{}".format(dir))
+            env_path = env_path+'/log.txt'
+            if os.path.exists(env_path):
+                f=open(env_path, 'a')
+            else:
+                f=open(env_path,'x')
+            f.write("log_dir:{}\n".format(dir))
+            f.write("conditions:\n")
+            pprint.pprint(vars(args),stream=f)
+            f.write("\n")
+            f.close()
+
+
 
 def _configure_default_logger():
     configure()
@@ -494,4 +506,3 @@ def scoped_configure(dir=None, format_strs=None, comm=None):
     finally:
         Logger.CURRENT.close()
         Logger.CURRENT = prevlogger
-

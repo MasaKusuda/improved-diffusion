@@ -5,3 +5,4 @@ cifar*
 *.png
 .vscode
 improved_diffusion.egg*
+*.npz

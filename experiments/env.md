@@ -9,6 +9,11 @@
 ## 動作環境を作成するために要した作業
 
 ```sh
+cd ~/projects/IMPROVED_DIFFUSION
+docker run -it --name kusuda_IMDDPM -v $(pwd):/workspace/IMDDPM --gpus all python:3.8 /bin/bash
+```
+
+```sh
 pip install -e .
 apt update 
 apt intall -y libopenmpi-dev
