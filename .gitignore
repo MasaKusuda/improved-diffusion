@@ -6,3 +6,5 @@ cifar*
 .vscode
 improved_diffusion.egg*
 *.npz
+*.pt
+openai*
